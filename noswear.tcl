@@ -1,5 +1,14 @@
 # $Id: noswear.tcl,v1 15/07/2012 10:18:58pm GMT +12 (NZST) IRCSpeed Exp $
 
+# Commands:
+# ---------
+# PUBLIC: !noswear on
+# PUBLIC: !noswear off
+# MSG: /msg yourbot noswear #channelname on
+# MSG: /msg yourbot noswear #channelname off
+
+#NOTE: Available to Global OP (o) and above, Channel Master (m) and above. 
+
 # Set global trigger here
 set sweartrig "!"
 
