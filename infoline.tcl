@@ -1,3 +1,22 @@
+# In your eggdrop.conf file, you will have this setting, change it however you want it.
+# Set here the time (in seconds) that someone must have been off-channel
+# before re-displaying their info line.
+#set wait-info 5
+
+# Commands are:
+# !infoline add text to add for infoline
+# to add a new infoline, or replace an old one.
+# NOTE: text for infoline is restricted to 120 characters. Exceeding this limit will cut the text off.
+
+# !infoline del
+# to remove set infoline.
+
+# !infoline show
+# to show current infoline.
+
+# !greet on|off
+# to enable|disable the greet setting for the channel.
+
 # Copy/paste the code below into a new file, infoline.txt (then change *.txt to *.tcl)
 
 # Set global trigger here
