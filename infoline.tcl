@@ -88,4 +88,4 @@ proc greet:pub {nick uhost hand chan arg} {
   }
 }
 
-putlog "Info.Line Module Loaded! - istok@IRCSpeed.org"
+putlog "Info.Line Module Loaded! - istok @ IRCSpeed"
