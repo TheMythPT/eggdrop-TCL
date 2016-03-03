@@ -1,7 +1,7 @@
 # TCL
 TCL for eggdrop bots (1.6.x branch)
 
-A collection of eggdrop scripts, made by istok on the IRCSpeed IRC Network.
+A collection of eggdrop scripts, made by istok on/for the IRCSpeed IRC Network.
 
 Feel free to edit/modify as needed. These scripts are released as is, therefore won't be maintained. 
 
