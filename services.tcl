@@ -1,4 +1,4 @@
-# $Id: ns.tcl,v1.0 03/12/2015 12:41:32 GMT +13 (NZDST) IRCSpeed Exp $
+# $Id: services.tcl,v1.1 04/03/2016 03:51:32am GMT +13 (NZDST) IRCSpeed Exp $
 
 # Example of commands:
 # !service nickserv set noop on|off
@@ -66,5 +66,5 @@ proc serv:pub {nick uhost hand chan arg} {
   }
 }
 
-putlog ".:Loaded:. ns.tcl,v1.0 - istok @ IRCSpeed"
+putlog ".:Loaded:. services.tcl,v1.1 - istok @ IRCSpeed"
 
