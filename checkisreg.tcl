@@ -23,8 +23,8 @@ set verifieduser "*is a registered nick*"
 
 # ----- NO EDIT -----
 # You may have to change the RAW numeric below to match your IRCd.
-bind raw - 307 check_isreg
-bind join - * join_checkisreg
+bind raw - 307 check:isreg
+bind join - * join:checkisreg
 bind pub - ${checkisregtrig}checkisreg authcheck:pub
 bind msg - checkisreg authcheck:msg
 
@@ -35,14 +35,14 @@ proc isregTrigger {} {
 
 setudef flag checkisauth
 
-proc join_checkisreg {nick uhost hand chan arg} {
+proc join:checkisreg {nick uhost hand chan arg} {
   if {![channel get $chan checkisauth]} {return}
   if {![isbotnick $nick] && ![validuser [nick2hand $nick]]} {
     putserv "WHOIS $nick"
   }
 }
 
-proc check_isreg {from keyword args} {
+proc check:isreg {from keyword args} {
   global verifieduser
   if {![string match $verifieduser $args]} {return}
   set nick [lindex [split $args] 1]
