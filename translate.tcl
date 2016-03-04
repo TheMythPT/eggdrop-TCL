@@ -103,5 +103,5 @@ namespace eval gTranslator {
     putserv "PRIVMSG $chan :\002Translated\002: [encoding convertto utf-8 $translated]"
     return 0
   }
-  putlog ".:LOADED:. translate.tcl,v1.7"
+  putlog ".:LOADED:. translate.tcl,v1.7 - istok @ IRCSpeed"
 }
