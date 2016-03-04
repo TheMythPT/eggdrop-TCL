@@ -162,7 +162,7 @@ proc addaov:pub {nick uhost hand chan arg} {
   set mask *!*@[lindex [split [getchanhost $aovadd $chan] @] 1]
   if {[onchan $aovadd $chan] && ![isvoice $aovadd $chan]} {putquick "MODE $chan +v $aovadd"}
   adduser $aovadd $mask
-  chattr $aovadd -|gv $chan
+  chattr $aovadd -|v $chan
   putquick "NOTICE $nick :Added $aovadd to the AOV List for $chan"
   putquick "NOTICE $aovadd :$nick ($hand) has added you to the AOV List for $chan"
 }
