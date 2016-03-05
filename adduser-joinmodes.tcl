@@ -1,4 +1,4 @@
-# $Id: adduser-join.tcl,v1.6 04/03/2016 07:00:31am GMT +12 (NZST) IRCSpeed Exp $
+# $Id: adduser-joinmodes.tcl,v1.6 04/03/2016 07:00:31am GMT +12 (NZST) IRCSpeed Exp $
 
 # ----- ADDING USERS ----- (Basic User adding)
 # Commands are:
