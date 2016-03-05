@@ -55,7 +55,7 @@ proc textflood {nick uhost hand type chan} {
      utimer $unlocktime [list putquick "MODE $chan -$textlockmodes"]
      timer $unbantime [list putquick "MODE $chan -b $banmask"]
    }
-  return
+  return 0
 }
 
 proc make:banmask {uhost nick} {
