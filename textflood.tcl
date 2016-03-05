@@ -1,4 +1,4 @@
-# $Id: textflood.tcl,v1.6 09/03/2015 12:37:19am GMT +12 (NZST) IRCSpeed Exp $
+# $Id: textflood.tcl,v1.3 09/03/2015 12:37:19am GMT +12 (NZST) IRCSpeed Exp $
 # SYNTAX (on PartyLine/DCC/CTCP/TELnet): 
 # .chanset #channel flood-chan lines:seconds
 # example: .chanset #IRCSpeed flood-chan 5:2 (5lines:2seconds)
@@ -75,4 +75,4 @@ global bantype
   }
 }
 
-putlog "Loaded: textflood.tcl - istok @ IRCSpeed"
+putlog "Loaded: textflood.tcl,v1.3 - istok @ IRCSpeed"
