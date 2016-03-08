@@ -1,4 +1,5 @@
 # $Id: translate.tcl,v1.7 16/01/2016 09:25:31am GMT +13 (NZ-DST) IRCSpeed Exp $
+# Thank you to simple from #eggheads/#eggdrop on Freenode for the Help with this script.
 
 # This is a google translate script, using the translate API. This requires a working API key, as google now charge for their usage.
 # If you have a working key, please feel free to download/use this code, or edit it as needed.
