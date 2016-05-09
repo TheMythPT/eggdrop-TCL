@@ -13,16 +13,16 @@ set serviceflag m
 
 # Feel free to add/delete your own services.* names, as this script could potentially be used on any network.
 # Set your networks NickServ
-set nickservice "nickserv@services.ircspeed.org"
+set nickservice "nickserv@services.ircspeed"
 
 # Set your networks ChanServ
-set chanservice "chanserv@services.ircspeed.org"
+set chanservice "chanserv@services.ircspeed"
 
 # Set your networks MemoServ (or leave "" to not use this)
-set memoservice "memoserv@services.ircspeed.org"
+set memoservice "memoserv@services.ircspeed"
 
 # Set your networks HostServ (or leave "" to not use this)
-set hostservice "hostserv@services.ircspeed.org"
+set hostservice "hostserv@services.ircspeed"
 
 # ---------- CODE BEGINS ----------
 proc getServiceTrig {} {
@@ -67,4 +67,3 @@ proc serv:pub {nick uhost hand chan arg} {
 }
 
 putlog ".:Loaded:. services.tcl,v1.1 - istok @ IRCSpeed"
-
