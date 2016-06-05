@@ -1,4 +1,4 @@
-# $Id: checkisreg.tcl,v1.0 13/07/2014 12:13:51pm GMT +12 (NZST) IRCSpeed Exp $
+# $Id: checkisreg.tcl,v1.1 05/06/2016 1:47:12pm GMT +12 (NZST) IRCSpeed Exp $
 
 # SYNTAX (on PartyLine/DCC/CTCP/TELnet): .chanset #channel -/+checkisauth
 # ----------
@@ -19,11 +19,12 @@ set isregglobflags o
 set isregchanflags o
 
 # Set here the string used to match registered/authenticated user's
-set verifieduser "*is a registered nick*"
+set verifieduser "*is logged in as*"
 
 # ----- NO EDIT -----
 # You may have to change the RAW numeric below to match your IRCd.
-bind raw - 307 check:isreg
+# Bahamut and other IRCd use numeric 307; ChatIRCd on IRCSpeed uses 330
+bind raw - 330 check:isreg
 bind join - * join:checkisreg
 bind pub - ${checkisregtrig}checkisreg authcheck:pub
 bind msg - checkisreg authcheck:msg
@@ -96,4 +97,4 @@ proc authcheck:msg {nick uhost hand arg} {
   }
 }
 
-putlog ".:LOADED:. checkisreg.tcl,v1.0 - istok @ IRCSpeed"
+putlog ".:LOADED:. checkisreg.tcl,v1.1 - istok @ IRCSpeed"
