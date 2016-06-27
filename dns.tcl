@@ -73,7 +73,8 @@ proc setdns:msg {nick uhost hand arg} {
 
 proc lookup:dns {nick uhost hand chan arg} {
   global dnsFlags
-  if {![matchattr [nick2hand $nick] $dnsFlags $chan] && ![channel get $chan dodns]} {return}
+  if {![matchattr [nick2hand $nick] $dnsFlags $chan]} {return}
+  if {![channel get $chan dodns]} {putquick "PRIVMSG $chan :ERROR: DNS functionality is not enabled for $chan - Please use [dnsTrig]setdns on|off"; return}
   if {[llength $arg] > 1} {return}
   if {[onchan $arg $chan]} {
     set hostip [eval exec host [lindex [split [getchanhost $arg $chan] @] 1]]
