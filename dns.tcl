@@ -81,7 +81,7 @@ proc lookup:dns {nick uhost hand chan arg} {
   set hostip [eval exec host $arg]
   }
   foreach line [split $hostip \n] {
-   puthelp "privmsg $chan :\002DNS Result\002: $line"
+   puthelp "PRIVMSG $chan :\002DNS Result\002: $line"
   }
  return 0
 }
