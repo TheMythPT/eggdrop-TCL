@@ -36,7 +36,6 @@ proc setdns:pub {nick uhost hand chan arg} {
   global dnsSetFlags
   if {![matchattr [nick2hand $nick] $dnsSetFlags $chan]} {return}
   if {[lindex [split $arg] 0] == ""} {putquick "PRIVMSG $chan :ERROR: Incorrect Parameters. SYNTAX: [dnsTrig]setdns on|off"; return}
-
  
   if {[lindex [split $arg] 0] == "on"} {
     if {[channel get $chan dodns]} {putquick "PRIVMSG $chan :ERROR: This setting is already enabled."; return}
