@@ -1,4 +1,4 @@
-# $Id: partquit.tcl,v1.5.0 27/06/2016 11:55:22pm GMT +12 (NZST) IRCSpeed Exp $
+# $Id: partquit.tcl,v1.5.1 28/06/2016 6:14:12pm GMT +12 (NZST) IRCSpeed Exp $
 
 # This script covers 3 factors.
 # 1) quitcheck - monitors quits for abusive text, like autokills, excess floods, or spam
@@ -70,6 +70,7 @@ proc quitcheck:pub {nick uhost hand chan text} {
     if {[channel get $chan quitcheck] && [regexp c [getchanmode $chan]]} {putquick "PRIVMSG $chan :ERROR: This setting is already enabled."; return}
     channel set $chan +quitcheck
     puthelp "PRIVMSG $chan :Enabled QuitCheck Protection for $chan"
+    return 0
   }
 
   if {[lindex [split $text] 0] == "off"} {
@@ -77,6 +78,7 @@ proc quitcheck:pub {nick uhost hand chan text} {
     if {![channel get $chan quitcheck] && [regexp c [getchanmode $chan]]} {putquick "PRIVMSG $chan :ERROR: This setting is already disabled."; return}
     channel set $chan -quitcheck
     puthelp "PRIVMSG $chan :Disabled QuitCheck Protection for $chan"
+    return 0
   }
 }
 
@@ -91,6 +93,7 @@ proc joinquit:pub {nick uhost hand chan text} {
     if {[channel get $chan joinquit] && [regexp c [getchanmode $chan]]} {putquick "PRIVMSG $chan :ERROR: This setting is already enabled."; return}
     channel set $chan +joinquit
     puthelp "PRIVMSG $chan :Enabled JoinQuit Protection for $chan"
+    return 0
   }
 
   if {[lindex [split $text] 0] == "off"} {
@@ -98,6 +101,7 @@ proc joinquit:pub {nick uhost hand chan text} {
     if {![channel get $chan joinquit] && [regexp c [getchanmode $chan]]} {putquick "PRIVMSG $chan :ERROR: This setting is already disabled."; return}
     channel set $chan -joinquit
     puthelp "PRIVMSG $chan :Disabled JoinQuit Protection for $chan"
+    return 0
   }
 }
 
@@ -110,14 +114,14 @@ proc joinpart:pub {nick uhost hand chan arg} {
     if {[channel get $chan joinpart]} {putquick "PRIVMSG $chan :\037ERROR\037: This setting is already enabled."; return}
     channel set $chan +joinpart
     puthelp "PRIVMSG $chan :Enabled JoinPart Protection for $chan"
-    return
+    return 0
   }
 
   if {[lindex [split $arg] 0] == "off"} {
     if {![channel get $chan joinpart]} {putquick "PRIVMSG $chan :\037ERROR\037: This setting is already disabled."; return}
     channel set $chan -joinpart
     puthelp "PRIVMSG $chan :Disabled JoinPart Protection for $chan"
-    return
+    return 0
   }
 }
 
@@ -152,14 +156,12 @@ proc joinpart:msg {nick uhost hand arg} {
     if {[channel get $chan joinpart]} {putquick "NOTICE $nick :\037ERROR\037: This setting is already enabled."; return}
     channel set $chan +joinpart
     putquick "NOTICE $nick :Enabled JoinPart Protection for $chan"
-    return
   }
 
   if {[lindex [split $arg] 1] == "off"} {
     if {![channel get $chan joinpart]} {putquick "NOTICE $nick :\037ERROR\037: This setting is already disabled."; return}
     channel set $chan -joinpart
     putquick "NOTICE $nick :Disabled JoinPart Protection for $chan"
-    return
   }
 }
 
@@ -170,7 +172,7 @@ proc quit:check {nick uhost hand chan reason} {
       if {[string match -nocase $exempt $reason]} {return}
     }
     foreach quitmatch $quitwords {
-      if {([botisop $chan]) && (![validuser [nick2hand $nick]]) && (![isop $nick $chan]) && (![isvoice $nick $chan])} {
+      if {([botisop $chan]) || (![validuser [nick2hand $nick]]) || (![isop $nick $chan]) || (![isvoice $nick $chan])} {
         if {([string match -nocase $quitmatch $reason]) && (![string match -nocase "*ghost*" $reason]) && (![string match -nocase "*collision*" $reason]) && (![string match -nocase "*svskill*" $reason])} {
           set mask *!*@[lindex [split [getchanhost $nick $chan] @] 1]
           pushmode $chan +b $mask
@@ -183,7 +185,7 @@ proc quit:check {nick uhost hand chan reason} {
 
 proc join:quit {nick uhost hand chan reason} {
   global jointime
-  if {[channel get $chan joinquit] && [botisop $chan] && ![isop $nick $chan] && ![isvoice $nick $chan] && ![validuser [nick2hand $nick]]} {
+  if {[channel get $chan joinquit] || [isbotnick $nick] || [botisop $chan] || ![isop $nick $chan] || ![isvoice $nick $chan] || ![validuser [nick2hand $nick]]} {
     set mask *!*@[lindex [split [getchanhost $nick $chan] @] 1]
     set join [getchanjoin $nick $chan]
     set quit [unixtime]
@@ -197,7 +199,7 @@ proc join:quit {nick uhost hand chan reason} {
 
 proc join:part {nick uhost hand chan {msg ""}} {
   global jointime
-  if {![channel get $chan joinpart] && ![botisop $chan]} {return}
+  if {![channel get $chan joinpart] || [isbotnick $nick] || ![botisop $chan]} {return}
     set mask *!*@[lindex [split [getchanhost $nick $chan] @] 1]
     set join [getchanjoin $nick $chan]
     set part [unixtime]
@@ -208,4 +210,4 @@ proc join:part {nick uhost hand chan {msg ""}} {
   flushmode $chan
 }
 
-putlog ".:partquit.tcl:.v, 1.5.0 - istok @ IRCSpeed"
+putlog ".:partquit.tcl:.v, 1.5.1 - istok @ IRCSpeed"
