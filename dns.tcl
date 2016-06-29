@@ -1,4 +1,4 @@
-# $Id: dns.tcl,v 1.2 28/06/2016 02:26:13am NZST (GMT+12) IRCSpeed Exp $
+# $Id: dns.tcl,v 1.3 29/06/2016 5:18:52pm NZST (GMT+12) IRCSpeed Exp $
 
 ## SYNTAX:
 ## --------------------------
@@ -73,8 +73,8 @@ proc setdns:msg {nick uhost hand arg} {
 proc lookup:dns {nick uhost hand chan arg} {
   global dnsFlags
   if {![matchattr [nick2hand $nick] $dnsFlags $chan]} {return}
-  if {![channel get $chan dodns]} {putquick "PRIVMSG $chan :ERROR: DNS functionality is not enabled for $chan - Please use [dnsTrig]setdns on|off"; return}
-  if {[llength $arg] > 1} {return}
+  if {![channel get $chan dodns]} {putquick "PRIVMSG $chan :ERROR: DNS functionality is not enabled for $chan - Please use [dnsTrig]setdns on"; return}
+  if {[lindex $arg 0] == ""} {putquick "PRIVMSG $chan :ERROR: Incorrect Parameters. SYNTAX: [dnsTrig]dns <nick|ip.or.host.name>"; return}
   if {[onchan $arg $chan]} {
     set hostip [eval exec host [lindex [split [getchanhost $arg $chan] @] 1]]
   } else {
