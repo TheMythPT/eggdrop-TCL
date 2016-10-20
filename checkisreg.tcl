@@ -12,11 +12,8 @@
 # Set your global trigger (default: !)
 set checkisregtrig "!"
 
-# Set global access flags to enable/disable authcheck (default: o)
-set isregglobflags o
-
-# Set channel access flags to enable/disable authcheck (default: o)
-set isregchanflags o
+# Set global|channel access flags to enable/disable authcheck (default: o|o)
+set regsetflags o|o
 
 # Set here the string used to match registered/authenticated user's
 set verifieduser "*is logged in as*"
@@ -54,8 +51,8 @@ proc check:isreg {from keyword args} {
 }
 
 proc authcheck:pub {nick uhost hand chan arg} {
-  global isregglobflags isregchanflags
-  if {[matchattr [nick2hand $nick] $isregglobflags|$isregchanflags $chan]} {
+  global regsetflags
+  if {[matchattr [nick2hand $nick] $regsetflags $chan]} {
     if {[lindex [split $arg] 0] == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [isregTrigger]checkisreg on|off"; return}
 
     if {[lindex [split $arg] 0] == "on"} {
@@ -75,9 +72,9 @@ proc authcheck:pub {nick uhost hand chan arg} {
 }
 
 proc authcheck:msg {nick uhost hand arg} {
-  global botnick isregglobflags isregchanflags
+  global botnick regsetflags
   set chan [strlwr [lindex [split $arg] 0]]
-  if {[matchattr [nick2hand $nick] $isregglobflags|$isregchanflags $chan]} {
+  if {[matchattr [nick2hand $nick] $regsetflags $chan]} {
     if {[lindex [split $arg] 0] == ""} {putquick "NOTICE $nick :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: /msg $botnick checkisreg #channel on|off"; return}
     if {([lindex [split $arg] 1] == "") && ([string match "*#*" $arg])} {putquick "NOTICE $nick :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: /msg $botnick checkisreg $chan on|off"; return}
 
