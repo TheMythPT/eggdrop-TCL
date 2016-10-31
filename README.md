@@ -5,4 +5,4 @@ A collection of eggdrop scripts that are made in the most basic method, to allow
 
 Please read the License that comes with this repo.
 
-<b>NOTE</b>: The Author has decided to spend more time on real life, so these scripts and any future releases are as is; there will be no further development or requests.
+<b>NOTE</b>: The Author has decided to spend more time on real life, so these scripts and any future releases are as is; IF there are any further development or requests, they may be done at the authors discretion.
