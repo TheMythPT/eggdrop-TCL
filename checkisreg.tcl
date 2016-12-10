@@ -33,7 +33,7 @@ proc isregTrigger {} {
 
 setudef flag checkisauth
 
-proc join:checkisreg {nick uhost hand chan arg} {
+proc join:checkisreg {nick uhost hand chan} {
   if {![channel get $chan checkisauth]} {return}
   if {![isbotnick $nick] && ![validuser [nick2hand $nick]]} {
     putserv "WHOIS $nick"
