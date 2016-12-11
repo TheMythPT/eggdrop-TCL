@@ -8,8 +8,7 @@
 set replytrig "!"
 
 # Set here what flags you wish to allow and trigger this script (leave it "" for anyone)
-set replyglobflags "ovf"
-set replychanflags "ovf"
+set replyflags "ovf|ovf"
 
 # Set here the text to thank the user who voiced you.
 set thankstext {
@@ -42,8 +41,8 @@ bind pub - ${replytrig}talkz talkz:pub
 bind msg - talkz talkz:msg
 
 proc talkz:pub {nick uhost hand chan arg} {
-  global replyglobflags replychanflags
-  if {[matchattr [nick2hand $nick] $replyglobflags|$replychanflags $chan]} {
+  global replyflags
+  if {[matchattr [nick2hand $nick] $replyflags $chan]} {
     if {[lindex [split $arg] 0] == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [getReplyTrig]talkz on|off"; return}
 
     if {[lindex [split $arg] 0] == "on"} {
@@ -63,9 +62,9 @@ proc talkz:pub {nick uhost hand chan arg} {
 }
 
 proc talkz:msg {nick uhost hand arg} {
-  global botnick replyglobflags replychanflags
+  global botnick replyflags
   set chan [strlwr [lindex [split $arg] 0]]
-  if {[matchattr [nick2hand $nick] $replyglobflags|$replychanflags $chan]} {
+  if {[matchattr [nick2hand $nick] $replyflags $chan]} {
     if {[lindex [split $arg] 0] == ""} {putquick "NOTICE $nick :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: /msg $botnick talkz #channel on|off"; return}
     if {[lindex [split $arg] 1] == ""} {putquick "NOTICE $nick :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: /msg $botnick talkz $chan on|off"; return}
 
