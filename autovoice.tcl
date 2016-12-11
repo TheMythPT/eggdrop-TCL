@@ -17,11 +17,8 @@
 # Set your global trigger (default: !)
 set autovoicetrig "!"
 
-# Set global access flags for command (default: o)
-set voiceglobflags o
-
-# Set channel access flags for command (default: o)
-set voicechanflags o
+# Set access flags for command (default: o|o)
+set autovoiceflags o|o
 
 ############# END OF EDIT ############
 proc voiceTrigger {} {
@@ -36,8 +33,8 @@ bind pub - ${autovoicetrig}autovoice autovoice:pub
 bind msg - autovoice autovoice:msg
 
 proc autovoice:pub {nick uhost hand chan arg} {
-  global voiceglobflags voicechanflags
-  if {[matchattr [nick2hand $nick] $voiceglobflags|$voicechanflags $chan]} {
+  global autovoiceflags
+  if {[matchattr [nick2hand $nick] $autovoiceflags $chan]} {
     if {[lindex [split $arg] 0] == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [voiceTrigger]autovoice on|off"; return}
 
     if {[lindex [split $arg] 0] == "on"} {
@@ -57,9 +54,9 @@ proc autovoice:pub {nick uhost hand chan arg} {
 }
 
 proc autovoice:msg {nick uhost hand arg} {
-  global botnick voiceglobflags voicechanflags
+  global botnick autovoiceflags
   set chan [strlwr [lindex [split $arg] 0]]
-  if {[matchattr [nick2hand $nick] $voiceglobflags|$voicechanflags $chan]} {
+  if {[matchattr [nick2hand $nick] $autovoiceflags $chan]} {
     if {[lindex [split $arg] 0] == ""} {putquick "NOTICE $nick :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: /msg $botnick autovoice #channel on|off"; return}
     if {[lindex [split $arg] 1] == ""} {putquick "NOTICE $nick :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: /msg $botnick autovoice $chan on|off"; return}
 
