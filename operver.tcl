@@ -1,4 +1,4 @@
-# $Id: operVersion.tcl,v1.OH 17/12/2016 02:26:13pm GMT +13 (NZ-DST) istok Exp $
+# $Id: operVersion.tcl,v1.OH 17/12/2016 02:26:13am GMT +13 (NZ-DST) istok Exp $
 
 # Set the global trigger you wish to use (default: !)
 set operVerTrig "!"
