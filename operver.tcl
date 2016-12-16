@@ -41,4 +41,4 @@ proc operVersion:reply {nick uhost hand dest key vers} {
   }
 }
 
-putlog ".:LOADED:. - Oper Version - .:$operVershion:."
+putlog ".:LOADED:. - operVersion - .:$operVershion:."
