@@ -1,4 +1,4 @@
-# $Id: channelVersion.tcl,v1.OH 17/12/2016 02:25:40pm GMT +13 (NZ-DST) istok Exp $
+# $Id: channelVersion.tcl,v1.OH 17/12/2016 02:25:40am GMT +13 (NZ-DST) istok Exp $
 
 # Set the global trigger you wish to use (default: !)
 set chanVerTrig "!"
