@@ -35,4 +35,4 @@ proc chanVersion:reply {nick uhost hand dest key vers} {
   }
 }
 
-putlog ".:LOADED:. - Public Version .:$chanVershion:."
+putlog ".:LOADED:. - chanVersion .:$chanVershion:."
