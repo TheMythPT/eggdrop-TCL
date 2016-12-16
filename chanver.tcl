@@ -21,7 +21,7 @@ bind pub - ${chanVerTrig}version chanVersion:proc
 bind ctcr - VERSION chanVersion:reply
 
 proc chanVersion:proc {nick uhost hand chan arg} {
-   global chanVerFlags temp 
+   global chanVerFlags chanVertemp 
    if {![matchattr [nick2hand $nick] $chanVerFlags $chan]} {return}
    set chanVertemp(who) [lindex [split $arg] 0]
    if {$chanVertemp(who) == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [getChanVer]version <nickname>"; return}
