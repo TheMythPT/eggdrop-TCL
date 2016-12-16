@@ -33,4 +33,4 @@ proc pubVersion:reply {nick uhost hand dest key vers} {
   }
 }
 
-putlog ".:LOADED:. - Public Version .:$pubVershion:."
+putlog ".:LOADED:. - pubVersion .:$pubVershion:."
