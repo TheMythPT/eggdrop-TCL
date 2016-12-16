@@ -18,7 +18,7 @@ bind raw - NOTICE operVersion:proc
 bind ctcr - VERSION operVersion:reply
 
 proc operVersion:proc {from keyword text} {
-   global temp
+   global operVertemp
     if {[string match -nocase "*Client connecting on*" $text]} {
      set operVertemp(who) [lindex [split $text] 9]
      if {$operVertemp(who) == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [getOperVer]version <nickname>"; return}
