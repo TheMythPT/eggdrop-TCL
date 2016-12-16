@@ -21,14 +21,12 @@ proc operVersion:proc {from keyword text} {
    global operVertemp
     if {[string match -nocase "*Client connecting on*" $text]} {
      set operVertemp(who) [lindex [split $text] 9]
-     if {$operVertemp(who) == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [getOperVer]version <nickname>"; return}
      putquick "PRIVMSG $operVertemp(who) :\001VERSION\001"
      return 0
    }
 
    if {[string match -nocase "*Client connecting at*" $text]} {
     set operVertemp(who) [lindex [split $text] 8]
-    if {$operVertemp(who) == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [getOperVer]version <nickname>"; return}
     putquick "PRIVMSG $operVertemp(who) :\001VERSION\001"
     return 0
   }
