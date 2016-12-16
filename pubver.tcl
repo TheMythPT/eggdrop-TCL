@@ -1,4 +1,4 @@
-# $Id: publicVersion.tcl,v1.OH 17/12/2016 02:27:38pm GMT +13 (NZ-DST) istok Exp $
+# $Id: publicVersion.tcl,v1.OH 17/12/2016 02:27:38am GMT +13 (NZ-DST) istok Exp $
 
 # Set the global trigger you wish to use (default: !)
 set pubVerTrig "!"
