@@ -42,7 +42,7 @@ proc chan:bans {nick uhost hand chan arg} {
   }
 }
 
-bind pub - ${triga}globans glo:bans
+bind pub - ${banstriga}globans glo:bans
 proc glo:bans {nick uhost hand chan arg} {
   global banglobflags
   if {[matchattr [nick2hand $nick] $banglobflags]} {
