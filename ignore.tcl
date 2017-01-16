@@ -36,7 +36,7 @@ proc ignore:pub {nick uhost hand chan text} {
       set reason [join [lrange [split $text] 3 end]]
       if {$reason == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [getIgnoreTrig]ignore add <*!*@host.mask.whatever> <duration:in:minutes> <your reasons whatever> - [getIgnoreTrig]ignore del <*!*@host.mask.whatever>"; return}
       newignore $addmask $hand "$reason" $duration
-      putquick "PRIVMSG $chan :\002New Ignore\002: $mask - \002Duration\002: $duration minutes - \002Reason\002: $reason"
+      putquick "PRIVMSG $chan :\002New Ignore\002: $addmask - \002Duration\002: $duration minutes - \002Reason\002: $reason"
       return 0
     }
 
@@ -45,7 +45,7 @@ proc ignore:pub {nick uhost hand chan text} {
       if {$delmask == ""} {putquick "PRIVMSG $chan :\037ERROR\037: Incorrect Parameters. \037SYNTAX\037: [getIgnoreTrig]ignore add <*!*@host.mask.whatever> <duration:in:minutes> <your reasons whatever> - [getIgnoreTrig]ignore del <*!*@host.mask.whatever>"; return}
       if {![isignore $delmask]} {putquick "PRIVMSG $chan :\037ERROR\037: This is NOT a Valid Ignore."; return}
       killignore $delmask
-      putquick "PRIVMSG $chan :\002Removed Ignore\002: $mask"
+      putquick "PRIVMSG $chan :\002Removed Ignore\002: $delmask"
       return 0
     }
   }
