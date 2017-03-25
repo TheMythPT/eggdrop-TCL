@@ -1,4 +1,4 @@
-# $Id: checkisreg.tcl,v1.1 05/06/2016 1:47:12pm GMT +12 (NZST) IRCSpeed Exp $
+# $Id: checkisreg.tcl,v1.3 25/03/2017 4:11:12pm GMT +12 (NZST) IRCSpeed Exp $
 
 # SYNTAX (on PartyLine/DCC/CTCP/TELnet): .chanset #channel -/+checkisauth
 # ----------
@@ -45,7 +45,7 @@ proc check:isreg {from keyword args} {
   if {![string match $verifieduser $args]} {return}
   set nick [lindex [split $args] 1]
    foreach chan [channels] {
-    if {![onchan $nick $chan] && ![channel get $chan checkisauth] && [validuser [nick2hand $nick]] && [isop $nick $chan] && [isvoice $nick $chan]} {return}
+    if {![onchan $nick $chan] && ![channel get $chan checkisauth] && [isop $nick $chan] && [isvoice $nick $chan]} {continue}
     putquick "MODE $chan +v $nick"
   }
 }
@@ -94,4 +94,4 @@ proc authcheck:msg {nick uhost hand arg} {
   }
 }
 
-putlog ".:LOADED:. checkisreg.tcl,v1.1 - istok @ IRCSpeed"
+putlog ".:LOADED:. checkisreg.tcl,v1.3 - istok @ eggdrop"
